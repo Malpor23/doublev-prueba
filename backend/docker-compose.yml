@@ -1,0 +1,50 @@
+version: '3.8'
+
+services:
+    nginx:
+        image: nginx:stable-alpine
+        container_name: nginx
+        ports:
+            - "8080:80"
+        volumes:
+            - ./src:/var/www
+            - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+        depends_on:
+            - app
+            - db
+
+    db:
+        image: postgres:14-alpine
+        container_name: postgres
+        environment:
+            - POSTGRES_DB=${DB_DATABASE}
+            - POSTGRES_USER=${DB_USERNAME}
+            - POSTGRES_PASSWORD=${DB_PASSWORD}
+        restart: always
+        tty: true
+        ports:
+            - "5433:5432"
+        volumes:
+            - './postgresql:/var/lib/postgresql/data'
+
+    app:
+        container_name: api_tickets
+        build:
+            context: .
+            dockerfile: Dockerfile
+        volumes:
+            - ./src:/var/www
+        ports:
+            - "9000:9000"
+        working_dir: /var/www
+
+    pgadmin:
+        image: dpage/pgadmin4
+        container_name: pgAdmin
+        ports:
+            - "5050:80"
+        depends_on:
+            - db
+        environment:
+            PGADMIN_DEFAULT_EMAIL: mg230886@gmail.com
+            PGADMIN_DEFAULT_PASSWORD: password

@@ -1,0 +1,15 @@
+<div class="flex-col rounded-lg bg-white px-8 py-8 dark:bg-night-700 sm:flex-row">
+    <div id="chart" *ngIf="users">
+        <apx-chart
+            [series]="chartOptions?.series"
+            [chart]="chartOptions?.chart"
+            [dataLabels]="chartOptions?.dataLabels"
+            [plotOptions]="chartOptions?.plotOptions"
+            [yaxis]="chartOptions?.yaxis"
+            [xaxis]="chartOptions?.xaxis"
+            [legend]="chartOptions?.legend"
+            [colors]="chartOptions?.colors"
+            [grid]="chartOptions?.grid"
+        ></apx-chart>
+    </div>
+</div>
