@@ -1,6 +1,6 @@
 # Instalar y configurar Laravel con Docker
 
-Configuración de Laravel en el entorno local con Docker: Nginx, MySQL, PHP y phpMyAdmin.
+Configuración de Laravel en el entorno local con Docker: Nginx, Postgres, PHP y pgAdmin.
 
 ## Cómo instalar y ejecutar el proyecto
 
